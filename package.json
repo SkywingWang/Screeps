@@ -1,0 +1,27 @@
+{
+  "name": "screeps",
+  "version": "1.0.0",
+  "description": "My Screeps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"multimeter"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SkywingWang/Screeps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SkywingWang/Screeps/issues"
+  },
+  "homepage": "https://github.com/SkywingWang/Screeps#readme",
+  "dependencies": {
+    "@types/lodash": "^3.10.1",
+    "@types/screeps": "^3.2.1"
+  },
+  "devDependencies": {
+    "screeps-multimeter": "^1.11.1"
+  }
+}

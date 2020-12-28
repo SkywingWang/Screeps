@@ -1,0 +1,52 @@
+1. Until now, we have created new creeps directly in the console. It’s not a good idea to do it constantly since the very idea of Screeps is making your colony control itself. You will do well if you teach your spawn to produce creeps in the room on its own.
+This is a rather complicated topic and many players spend months perfecting and refining their auto-spawning code. But let’s try at least something simple and master some basic principles to start with.
+
+到目前为止，我们已经直接在控制台中创建了新的爬虫。 不断进行此操作不是一个好主意，因为Screeps的主旨就是让您自己控制菌落。 如果您教自己的产卵自行在房间内产生蠕变，那么您会做得很好。
+这是一个相当复杂的话题，许多玩家花了几个月的时间来完善和完善他们的自动生成代码。 但是，让我们至少尝试一些简单的事情，并掌握一些基本原则。
+
+2. You will have to create new creeps when old ones die from age or some other reasons. Since there are no events in the game to report death of a particular creep, the easiest way is to just count the number of required creeps, and if it becomes less than a defined value, to start spawning.
+There are several ways to count the number of creeps of the required type. One of them is filtering Game.creeps with the help of the _.filter function and using the role in their memory. Let’s try to do that and bring the number of creeps into the console.
+Add the output of the number of creeps with the role harvester into the console.
+
+当旧的由于年龄原因或其他原因死亡时，您将不得不创建新的小生物。 由于游戏中没有事件可报告特定蠕变的死亡，因此最简单的方法是仅计算所需蠕变的数量，如果该数量小于定义的值，则开始生成。
+有几种方法可以计算所需类型的蠕变数量。 其中之一是借助_.filter函数过滤Game.creeps，并在其内存中使用该角色。 让我们尝试这样做，并将蠕变数量带入控制台。
+使用角色收集器将小兵数量的输出添加到控制台中。
+
+3. Let’s say we want to have at least two harvesters at any time. The easiest way to achieve this is to run StructureSpawn.spawnCreep each time we discover it’s less than this number. You may not define its name (it will be given automatically in this case), but don’t forget to define the needed role.
+We may also add some new RoomVisual call in order to visualize what creep is being spawned.
+Add the logic for StructureSpawn.spawnCreep in your main module.
+Documentation:
+StructureSpawn.spawnCreep
+RoomVisual
+
+假设我们要随时至少有两个收割机。 实现此目的最简单的方法是，每当发现它小于此数字时，运行StructureSpawn.spawnCreep。 您可能没有定义其名称（在这种情况下会自动给出名称），但是请不要忘记定义所需的角色。
+我们还可以添加一些新的RoomVisual调用，以可视化生成的蠕变。
+在主模块中添加StructureSpawn.spawnCreep的逻辑。
+说明文件：
+StructureSpawn.spawnCreep
+室内视觉
+
+4. Now let’s try to emulate a situation when one of our harvesters dies. You can now give the command suicide to the creep via the console or its properties panel on the right.
+Make one of the harvesters suicide.
+Documentation:
+Creep.suicide
+
+现在，让我们模拟一个收割机死亡的情况。 现在，您可以通过右侧的控制台或它的属性面板将命令自杀添加到蠕变中。
+使其中一个收割者自杀。
+说明文件：
+蠕变自杀
+
+5. As you can see from the console, after we lacked one harvester, the spawn instantly started building a new one with a new name.
+从控制台中可以看到，在我们缺少一台收割机之后，该生成立即开始使用新名称创建新的收割机。
+
+6. An important point here is that the memory of dead creeps is not erased but kept for later reuse. If you create creeps with random names each time it may lead to memory overflow, so you should clear it in the beginning of each tick (prior to the creep creation code).
+Add code to clear the memory.
+
+这里重要的一点是，不会删除死蠕变的记忆，而是保留该记忆以备后用。 如果您每次使用随机名称创建蠕变都可能导致内存溢出，因此您应在每个刻度线的开头（蠕变创建代码之前）将其清除。
+添加代码以清除内存。
+
+7. Now the memory of the deceased is relegated to oblivion which saves us resources.
+Apart from creating new creeps after the death of old ones, there is another way to maintain the needed number of creeps: the method StructureSpawn.renewCreep. Creep aging is disabled in the Tutorial, so we recommend that you familiarize yourself with it on your own.
+
+现在，死者的记忆被遗忘了，这节省了我们的资源。
+除了在旧的死亡后创建新的爬行外，还有另一种方法来维持所需的爬行数量：方法StructureSpawn.renewCreep。 本教程禁用了蠕变老化，因此我们建议您自己熟悉一下。

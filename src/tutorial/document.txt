@@ -1,0 +1,60 @@
+一. 游戏世界
+平原（Plain Land）- 普通的地面，移动成本为2。
+沼泽（Swamps）- 移动成本为10.
+墙（Walls）- 阻止单位移动。
+道路（Roads） - 可以将移动成本减小到1。道路会随着使用而损坏，需要维修。
+建筑墙壁（Constructed Walls） - 由玩家自行建造的墙壁。与天然墙壁不同，建筑墙壁可以被其他玩家攻击、破坏。
+城墙（Ramparts） - 防御工事。己方单位可以在城墙内移动，并且在城墙被完全破坏之前，城墙内的己方单位无法被攻击。城墙会随着游戏时间推进而损坏，需要维修。
+在游戏开始的时候，你可以从世界中任意选择一个空闲的房间作为自己的领土。之后会有一个安全期，在此期间别人无法攻击你，最好利用这段时间加强自己的防御，否则时间一过别人就可以蹂躏你。
+
+二. 属地（Colony）
+能量源（Energy Sources） 是游戏里的主要资源，可以由 Creep 采集。能量源的单次储量有限，不过每 300 个游戏 tick 都会恢复。
+母巢（Spawn） 是 Colony 的核心部分。可以存储采集到的能量并用能量建造新的 Creep。每个房间最多可有 3 个 Spawn。
+
+三. Creeps
+Creep：普通工人，能够在几个 tick 内建造或修复结构的巨型建筑机器，大容量运输单位，快速廉价的侦察兵，装备精良的具有再生能力的战斗机等。没有做不到，只有想不到。
+不过要注意的是 Creep 的生命时间只有 1500 个游戏 tick （大约 30-60 分钟，具体取决于每个游戏 tick 的时长），然后它会死掉。 因此，你不仅需要控制现有的 Creep，还需要设计 Creep 的更替方式。
+标准的 Spawn 只能产生花费不超过 300 单位能量的基本 Creep。想要生产高级的 Creep 就需要建造 Spawn 扩展（Extension），每个 Spawn 扩展可使 Spawn 的能量存储容量多 50，从而允许生产更高级的 Creep 。
+Spawn扩展的放置位置不重要，只需要和 Spawn 在一个房间里就行了，并且一个扩展可以被多个 Spawn 共同使用。生产 Creep 前需要 Spawn 和扩展里有足够多的能量。
+
+每个 Creep 的能力由 Creep 的构造部件决定：
+WORK – 收集能量，建造和修复结构，升级控制器的能力。
+MOVE – 移动的能力。
+CARRY – 运输能源的能力。
+ATTACK – 短距离攻击的能力。
+RANGED_ATTACK – 长距离攻击的能力。
+HEAL – 治疗其他单位的能力。
+CLAIM - 控制领土的能力。
+TOUGH – “空”部件，唯一作用就是承受伤害。
+每种能力的强弱取决于对应部件的数量。以工作效率为例，有 3 个 WORK 部件的 Creep 的工件效率是只有一个 WORK 部件的 3 倍。这同样适用于其他部件。
+
+四. Control
+全局控制等级 （Global Control Level; 缩写：GCL）
+CPU 限制。在官方服务器上，每个人开局有 20 个 CPU 的限制，只能控制少量的单位。如果你是订阅（氪金）用户，每提升一个 GCL 等级可以多获得 10 个 CPU 资源，直到达到最大的 300 CPU 限制。
+控制房间数量。比如说你想要控制 3 个房间就需要 3 级的 GCL。
+你当前的 GCL 等级在 overview 页面 显示.
+
+房间控制等级 （Room Control Level; 缩写：RCL）
+如果想要在房间里建造设施，首先需要控制这个房间。在大多数房间里都有一个被称为 房间控制器（Room Controller）的特殊装置。你第一个房间里的房间控制器默认归你所有，其他的中立房间控制器可以通过带有 CLAIM 部件的 creep 占有以取得房间控制权。
+新占领的房间控制器可以让你在该房间建造一个 Spawn。如果需要建造额外的 Spawn 或者其他扩展就需要通过 Creep.upgradeController给控制器输入能量来提升房间控制器等级 （Room Controller Level，RCL）。
+
+RCL 等级对应可建造建筑
+RCL	升级所需能量	建筑
+0	—	Roads, 5 Containers
+1	200	Roads, 5 Containers, 1 Spawn
+2	45,000	Roads, 5 Containers, 1 Spawn, 5 Extensions (50 容量), Ramparts (300K 最大生命值), Walls
+3	135,000	Roads, 5 Containers, 1 Spawn, 10 Extensions (50 容量), Ramparts (1M 最大生命值), Walls, 1 Tower
+4	405,000	Roads, 5 Containers, 1 Spawn, 20 Extensions (50 容量), Ramparts (3M 最大生命值), Walls, 1 Tower, Storage
+5	1,215,000	Roads, 5 Containers, 1 Spawn, 30 Extensions (50 容量), Ramparts (10M 最大生命值), Walls, 2 Towers, Storage, 2 Links
+6	3,645,000	Roads, 5 Containers, 1 Spawn, 40 Extensions (50 容量), Ramparts (30M 最大生命值), Walls, 2 Towers, Storage, 3 Links, Extractor, 3 Labs, Terminal
+7	10,935,000	Roads, 5 Containers, 2 Spawns, 50 Extensions (100 容量), Ramparts (100M 最大生命值), Walls, 3 Towers, Storage, 4 Links, Extractor, 6 Labs, Terminal
+8	—	Roads, 5 Containers, 3 Spawns, 60 Extensions (200 容量), Ramparts (300M 最大生命值), Walls, 6 Towers, Storage, 6 Links, Extractor, 10 Labs, Terminal, Observer, Power Spawn
+
+攻击控制器
+控制器无法被攻击或毁坏。然而，控制器在没有受到 upgradeController 的作用下会缓慢降级，比如说 RCL1 的时候 20,000 个游戏 tick 会降一级，具体的降级规则看 StructureController。当 RCL 等级降为 0 时，该房间控制器即变为中立，其他玩家就可以占领了。
+当然你可以通过 attackController 影响别人的 RC 降级计时器。
+
+提升GCL
+升级 GCL 需要向控制器中注入能量，GCL 与控制器的级别是同步增长的，即便控制器已经满级，往控制器中注入能量依旧会使 GCL 上涨。
+一旦 GCL 级别提升就不会再降下来，即使游戏输到一个房间都不剩了。重新开始游戏时 GCL 仍然还是那么多，可以让你领先在起跑线上。
+如果一个房间所需的 GCL 比你的高，你仍然可以保留（reserve）它的控制器。此外，保留中立房间的控制器能够将能源恢复到最大容量。

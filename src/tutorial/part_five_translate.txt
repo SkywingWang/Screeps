@@ -1,0 +1,103 @@
+1. The world of Screeps is not the safest place. Other players may have claims on your territory. Besides, your room may be raided by neutral NPC creeps occasionally. So you ought to think about your colony defense in order to develop it successfully.
+
+爬行世界不是最安全的地方。 其他玩家可能在您的领土上拥有所有权。 此外，您的房间有时会被中立的NPC爬行袭击。 因此，您应该考虑自己的殖民地防御才能成功发展。
+
+2. This hostile creep has come from the left entry and attacked your colony. It’s good that we have walls to restrain it temporarily. But they will fall sooner or later, so we need to deal with the problem.
+
+这种敌对行动是从左边进入的，并袭击了你的殖民地。 最好有墙可以暂时限制它。 但是它们迟早会掉下来，所以我们需要解决这个问题。
+
+3. The surest way to fend off an attack is using the room Safe Mode. In safe mode, no other creep will be able to use any harmful methods in the room (but you’ll still be able to defend against strangers).
+The safe mode is activated via the room controller which should have activations available to use. Let’s spend one activation to turn it on in our room.
+Activate safe mode.
+Documentation:
+StructureController.activateSafeMode
+
+抵御攻击的最可靠方法是使用房间安全模式。 在安全模式下，其他小兵将无法使用房间内的任何有害方法（但您仍然可以防御陌生人）。
+通过房间控制器激活安全模式，该房间控制器应具有可用的激活功能。 让我们花一个激活时间在房间里打开它。
+激活安全模式。
+说明文件：
+StructureController.activateSafeMode
+
+4. As you can see, the enemy creep stopped attacking the wall – its harmful methods are blocked. We recommend that you activate safe mode when your defenses fail.
+Now let’s cleanse the room from unwanted guests.
+
+如您所见，敌人的小兵不再攻击墙壁-它的有害方法被阻止。 我们建议您在防御失败时激活安全模式。
+现在，让我们清理房间，防止多余的客人进入。
+
+5. Towers are the easiest way to actively defend a room. They use energy and can be targeted at any creep in a room to attack or heal it. The effect depends on the distance between the tower and the target.
+To start with, let’s lay a foundation for our new tower. You can set any place you wish inside the walls and place the construction site there with the help of the button “Construct” on the upper panel.
+Place the construction site for the tower (manually or using the code below).
+Documentation:
+StructureTower
+Room.createConstructionSite
+
+防御塔是主动保护房间的最简单方法。 他们使用能量，可以针对房间中的任何小兵来攻击或治愈它。 效果取决于塔与目标之间的距离。
+首先，让我们为新塔楼打下基础。 您可以在墙壁内设置任何所需的位置，并借助上方面板上的“构建”按钮将施工现场放置在墙壁上。
+放置塔的施工现场（手动或使用下面的代码）。
+说明文件：
+结构塔
+Room.createConstructionSite
+
+6. The creep Builder1 has immediately started the construction. Let’s wait until it finishes.
+
+Cree Builder1已立即开始施工。 让我们等到完成为止。
+
+7. A tower uses energy, so let’s set the harvester role to bring energy to the tower along with other structures. To do this, you need to add the constant STRUCTURE_TOWER to the filter of structures your harvester is aimed at.
+Add STRUCTURE_TOWER to the module role.harvester and wait for the energy to appear in the tower.
+
+塔要消耗能量，因此让我们设置收割机的作用是将能量与其他结构一起带入塔。 为此，您需要将常量STRUCTURE_TOWER添加到收割机所针对的结构的过滤器中。
+将STRUCTURE_TOWER添加到模块role.harvester中，然后等待能量出现在塔中。
+
+8. Excellent, your tower is ready to use!
+Like a creep, a tower has several similar methods: attack, heal, and repair. Each action spends 10 energy units. We need to use attack on the closest enemy creep upon its discovery. Remember that distance is vital: the effect can be several times stronger with the same energy cost!
+To get the tower object directly you can use its ID from the right panel and the method Game.getObjectById.
+Destroy the enemy creep with the help of the tower.
+Documentation:
+Game.getObjectById
+RoomObject.pos
+RoomPosition.findClosestByRange
+StructureTower.attack
+
+太好了，您的塔就可以使用了！
+就像小兵一样，塔楼有几种类似的方法：攻击，治疗和修理。 每个动作花费10个能量单位。 一旦发现，我们需要对最近的敌人进行攻击。 请记住，距离是至关重要的：在相同的能源成本下，效果可以强几倍！
+要直接获取塔对象，可以使用右侧面板中的ID和Game.getObjectById方法。
+在塔的帮助下消灭敌人的小兵。
+说明文件：
+Game.getObjectById
+RoomObject.pos
+RoomPosition.findClosestByRange
+StructureTower.attack
+
+9. The enemy creep is eliminated and our colony can breathe easy. However, the invader has damaged some walls during the brief attack. You’d better set up auto-repair.
+
+消除了敌人的小兵，我们的殖民地可以轻松呼吸。 但是，入侵者在短暂袭击中已经损坏了一些墙壁。 您最好设置自动修复。
+
+10. Damaged structures can be repaired by both creeps and towers. Let’s try to use a tower for that. We’ll need the method repair. You will also need the method Room.find and a filter to locate the damaged walls.
+Note that since walls don’t belong to any player, finding them requires the constant FIND_STRUCTURES rather than FIND_MY_STRUCTURES.
+Repair all the damaged walls.
+Documentation:
+Room.find
+StructureTower.repair
+
+蠕变和塔楼均可修复受损的结构。 让我们尝试使用塔。 我们需要方法修复。 您还需要使用Room.find方法和一个过滤器来定位损坏的墙壁。
+请注意，由于墙不属于任何玩家，因此找到墙需要常量FIND_STRUCTURES而不是FIND_MY_STRUCTURES。
+修理所有损坏的墙壁。
+说明文件：
+找房间
+StructureTower.repair
+
+11. All the damage from the attack has been repaired!
+Congratulations, you have completed the Tutorial! Now you have enough knowledge and code to start playing in the online mode. Choose your room, found a colony, and set out on your own quest for domination in the world of Screeps!
+If you want to delve deeper in the subtleties of the game or have any questions, please feel free to refer to:
+Documentation
+Forum
+Slack chat
+Have fun scripting!
+
+攻击造成的所有损害均已修复！
+恭喜，您已经完成了教程！ 现在，您已经有了足够的知识和代码，可以开始在线模式播放了。 选择您的房间，找到一个殖民地，并开始在Screeps的世界中统治世界！
+如果您想深入研究游戏的精妙之处或有任何疑问，请随时参考：
+文献资料
+论坛
+闲聊
+祝您脚本编写愉快！
